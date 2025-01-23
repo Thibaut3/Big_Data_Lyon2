@@ -7,7 +7,8 @@ JUILLARD Thibaut
 1)
 RQT : db.grades.findOne()
 Nb retourné : 1
-Sortie : 
+Sortie :
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -35,7 +36,7 @@ Sortie :
     }
   ]
 }
-
+```
 RQT : db.zips.findOne()
 Nb retourné : 1
 Sortie : 
