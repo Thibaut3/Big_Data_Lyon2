@@ -480,12 +480,28 @@ et
 }
 ```
 
-2)
-RQT : 
-db.zips.aggregate([{$match: {pop: {$gte: 10000}}},{$count: "count"}])
-db.zips.aggregate([{$match: {pop: {$gte: 10000}}}])
+RQT :
+``` js
+db.zips.aggregate([
+	{$match: {
+		pop: {$gte: 10000}
+		}
+	}
+])
+```
+``` js
+db.zips.aggregate([
+	{$match: {
+		pop: {$gte: 10000}
+		}
+	},
+	{$count: "count"}
+])
+```
 Nb retourné : 7634
+
 Sortie : 
+``` js
 {
   _id: '01001',
   city: 'AGAWAM',
@@ -496,14 +512,33 @@ Sortie :
   pop: 15338,
   state: 'MA'
 }
+```
 
-
-3)
-RQT : 
-db.grades.aggregate([{$sort:{class_id:1,student_id:1}},{$count : "count"}])
-db.grades.aggregate([{$sort:{class_id:1,student_id:1}}])
+2)
+RQT :
+``` js
+db.grades.aggregate([
+	{$sort:{
+		class_id:1,
+		student_id:1
+		}
+	}
+])
+```
+``` js
+db.grades.aggregate([
+	{$sort:{
+		class_id:1,
+		student_id:1
+		}
+	},
+	{$count : "count"}
+])
+```
 Nb retourné: 280
+
 Sortie:
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c370'),
   student_id: 4,
@@ -535,7 +570,7 @@ Sortie:
     }
   ]
 }
-
+```
 
 4)
 RQT :
