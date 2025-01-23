@@ -6,9 +6,9 @@ JUILLARD Thibaut
 
 1)
 RQT :
-
+``` js
 db.grades.findOne()
-
+```
 Nb retourné : 1
 
 Sortie :
