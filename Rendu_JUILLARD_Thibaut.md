@@ -574,10 +574,16 @@ Sortie:
 
 4)
 RQT :
+``` js
 db.grades.aggregate([{$unwind: "$scores"}])
+```
+``` js
 db.grades.aggregate([{$unwind: "$scores"},{$count:"count"}])
+```
 Nb retourné : 1241
+
 Sortie :
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -587,26 +593,68 @@ Sortie :
     score: 57.92947112575566
   }
 }
+```
 
-
-5)
+6)
 RQT :
-db.zips.aggregate([{$group: {_id: "$city", _pop: {$min: "$pop"}}}])
-db.zips.aggregate([{$group: {_id: "$city", _pop: {$min: "$pop"}}},{$count : "count"}])
+``` js
+db.zips.aggregate([
+	{$group: {
+		_id: "$city",
+		_pop: {$min: "$pop"}
+		}
+	}
+])
+```
+``` js
+db.zips.aggregate([
+	{$group: {
+		_id: "$city",
+		_pop: {$min: "$pop"}
+		}
+	},
+	{$count : "count"}
+])
+```
 Nb retourné : 16584
+
 Sortie :
+``` js
 {
   _id: 'SEASIDE HEIGHTS',
   _pop: 4044
 }
+```
 
-
-6)
-RQT : 
-db.grades.aggregate([{$lookup: {from: "zips", localField: "student_id", foreignField: "pop", as : "concate"}}])
-db.grades.aggregate([{$lookup: {from: "zips", localField: "student_id", foreignField: "pop", as : "concate"}},{$count: "count"}])
+8)
+RQT :
+``` js
+db.grades.aggregate([
+	{$lookup: {
+		from: "zips",
+		localField: "student_id",
+		foreignField: "pop",
+		as : "concate"
+		}
+	}
+])
+```
+``` js
+db.grades.aggregate([
+	{$lookup: {
+		from: "zips",
+		localField: "student_id",
+		foreignField: "pop",
+		as : "concate"
+		}
+	},
+	{$count: "count"}
+])
+```
 Nb retourné : 280
+
 Sortie :
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -677,7 +725,7 @@ Sortie :
     }
   ]
 }
-
+```
 
 # Pipelines 
 
