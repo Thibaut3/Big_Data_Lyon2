@@ -12,7 +12,7 @@ db.grades.findOne()
 Nb retourné : 1
 
 Sortie :
-``` js
+``` json
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -41,9 +41,15 @@ Sortie :
   ]
 }
 ```
-RQT : db.zips.findOne()
+
+RQT : 
+``` js
+db.zips.findOne()
+```
 Nb retourné : 1
+
 Sortie : 
+``` json
 {
   _id: '01001',
   city: 'AGAWAM',
@@ -54,13 +60,20 @@ Sortie :
   pop: 15338,
   state: 'MA'
 }
-
+```
 
 2)
-
-RQT : db.grades.find({}) et db.grades.find({}).count()
+RQT :
+``` js
+db.grades.find({})
+```
+``` js
+db.grades.find({}).count()
+```
 Nb retourné : 280
+
 Sortie : 
+``` json
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -88,10 +101,19 @@ Sortie :
     }
   ]
 }
+```
 
-RQT : db.zips.find({}) et db.zips.find({}).count()
+RQT : 
+``` js
+db.zips.find({})
+```
+``` js
+db.zips.find({}).count()
+```
 Nb retourné : 29353
+
 Sortie : 
+``` json
 {
   _id: '01001',
   city: 'AGAWAM',
@@ -102,20 +124,42 @@ Sortie :
   pop: 15338,
   state: 'MA'
 }
-
+```
 
 3)
-RQT : db.grades.countDocuments() ou db.grades.countDocuments({})
+RQT :
+``` js
+db.grades.countDocuments()
+```
+ou 
+``` js
+db.grades.countDocuments({})
+```
 Sortie : 280
 
-RQT : db.zips.countDocuments() ou db.zips.countDocuments({})
+RQT : 
+``` js
+db.zips.countDocuments()
+```
+ou
+``` js
+db.zips.countDocuments({})
+```
 Sortie : 29353
 
 
 4)
-RQT : db.grades.find({"class_id":20}) et db.grades.find({"class_id":20}).count()
+RQT :
+``` js
+db.grades.find({"class_id":20})
+```
+```js
+db.grades.find({"class_id":20}).count()
+```
 Nb retourné : 7
+
 Sortie :
+``` json
 {
   _id: ObjectId('50b59cd75bed76f46522c37a'),
   student_id: 6,
@@ -135,13 +179,28 @@ Sortie :
     }
   ]
 }
+```
 
-
-5)
-RQT : db.grades.find({"class_id": {$lte:20}}) et db.grades.find({"class_id": {$lte:20}}).count()
+6)
+RQT :
+``` js
+db.grades.find({
+	"class_id": {
+		$lte:20
+		}
+	})
+```
+``` js
+db.grades.find({
+	"class_id": {
+		$lte:20
+		}
+	}).count()
+```
 Nb retourné : 188
-Sortie : 
 
+Sortie : 
+``` json
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
   class_id: 2,
@@ -168,12 +227,34 @@ Sortie :
     }
   ]
 }
+```
 
-
-6)
-RQT : db.grades.find({$expr: {$gte: [ "$student_id", "$class_id"]}}) et db.grades.find({$expr: {$gte: [ "$student_id", "$class_id"]}}).count()
+8)
+RQT :
+``` js
+db.grades.find({
+	$expr: {
+		$gte: [
+			"$student_id",
+			"$class_id"
+			]
+		}
+	})
+```
+``` js
+db.grades.find({
+	$expr: {
+		$gte: [
+			"$student_id",
+			"$class_id"
+			]
+		}
+	}).count()
+```
 Nb retourné : 188
+
 Sortie : 
+``` json
 {
   _id: ObjectId('50b59cd75bed76f46522c366'),
   student_id: 3,
@@ -197,9 +278,9 @@ Sortie :
     }
   ]
 }
+```
 
-
-7)
+10)
 RQT : 
 	db.grades.find({"class_id": {$gte:10, $lte:20}})
 	db.grades.find({$and: [{"class_id": {$gte:10}},{"class_id": {$lte:20}}]})
