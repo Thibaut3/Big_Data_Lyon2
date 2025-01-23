@@ -12,7 +12,7 @@ db.grades.findOne()
 Nb retourné : 1
 
 Sortie :
-``` json
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -49,7 +49,7 @@ db.zips.findOne()
 Nb retourné : 1
 
 Sortie : 
-``` json
+``` js
 {
   _id: '01001',
   city: 'AGAWAM',
@@ -73,7 +73,7 @@ db.grades.find({}).count()
 Nb retourné : 280
 
 Sortie : 
-``` json
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -113,7 +113,7 @@ db.zips.find({}).count()
 Nb retourné : 29353
 
 Sortie : 
-``` json
+``` js
 {
   _id: '01001',
   city: 'AGAWAM',
@@ -159,7 +159,7 @@ db.grades.find({"class_id":20}).count()
 Nb retourné : 7
 
 Sortie :
-``` json
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c37a'),
   student_id: 6,
@@ -200,7 +200,7 @@ db.grades.find({
 Nb retourné : 188
 
 Sortie : 
-``` json
+``` js
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
   class_id: 2,
@@ -254,7 +254,7 @@ db.grades.find({
 Nb retourné : 188
 
 Sortie : 
-``` json
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c366'),
   student_id: 3,
@@ -281,13 +281,36 @@ Sortie :
 ```
 
 10)
-RQT : 
-	db.grades.find({"class_id": {$gte:10, $lte:20}})
-	db.grades.find({$and: [{"class_id": {$gte:10}},{"class_id": {$lte:20}}]})
+RQT :
+``` js
+db.grades.find({
+	"class_id": {
+		$gte:10,
+		$lte:20
+		}
+	})
+```
+``` js
+db.grades.find({
+	$and: [
+		{"class_id": {
+				$gte:10
+				}
+		},
+		{"class_id": {
+				$lte:20
+				}
+		}
+	]
+})
+```
 Nb retourné :
-	100
-	100
+
+100
+100
+
 Sortie :
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c357'),
   student_id: 0,
@@ -335,12 +358,28 @@ Sortie :
     }
   ]
 }
-
+```
 
 8)
-RQT : db.grades.find({},{ue:"$class_id",etu:"$student_id",scores:1}) et db.grades.find({},{ue:"$class_id",etu:"$student_id",scores:1}).count()
-Nb retourné :280
+RQT :
+``` js
+db.grades.find({},{
+			ue:"$class_id",
+			etu:"$student_id",
+			scores:1
+})
+```
+``` js
+db.grades.find({},{
+			ue:"$class_id",
+			etu:"$student_id",
+			scores:1
+}).count()
+```
+Nb retourné : 280
+
 Sortie :
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   scores: [
@@ -368,16 +407,43 @@ Sortie :
   ue: 2,
   etu: 0
 }
-
+```
 
 # Aggregation
 
 1)
-RQT : 
-	db.grades.aggregate([{$project:{somme:{$sum:["$class_id","$student_id"]},"class_id":1,"student_id":1,"scores":1}}])
-	db.grades.aggregate([{$project:{somme:{$sum:["$class_id","$student_id"]},"class_id":1,"student_id":1,"scores":1}},{$count : "count"}])
+RQT :
+``` js
+db.grades.aggregate([
+	{$project:{
+		somme:{
+			$sum:["$class_id","$student_id"]
+			},
+		"class_id":1,
+		"student_id":1,
+		"scores":1
+		}
+	}
+])
+```
+``` js
+db.grades.aggregate([
+	{$project:{
+		somme:{
+			$sum:["$class_id","$student_id"]
+			},
+		"class_id":1,
+		"student_id":1,
+		"scores":1
+		}
+	},
+	{$count : "count"}
+])
+```
 Nb retourné : 280
+
 Sortie : 
+``` js
 {
   _id: ObjectId('50b59cd75bed76f46522c34e'),
   student_id: 0,
@@ -406,13 +472,13 @@ Sortie :
   ],
   somme: 2
 }
-
+```
 et
-
+``` js
 {
   count: 280
 }
-
+```
 
 2)
 RQT : 
@@ -578,7 +644,7 @@ Sortie :
 }
 
 
-# Partie 4
+# Pipelines 
 
 
 
