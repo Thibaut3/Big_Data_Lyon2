@@ -5,8 +5,12 @@ JUILLARD Thibaut
 # Premières Requêtes :
 
 1)
-RQT : db.grades.findOne()
+RQT :
+
+db.grades.findOne()
+
 Nb retourné : 1
+
 Sortie :
 ``` js
 {
